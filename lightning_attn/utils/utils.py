@@ -4,6 +4,7 @@ import torch
 
 
 def _build_slope_tensor(n_attention_heads: int):
+    print(f"_build_slope_tensor n_attention_heads={n_attention_heads}")
     def get_slopes(n):
         def get_slopes_power_of_2(n):
             start = 2 ** (-(2 ** -(math.log2(n) - 3)))
@@ -27,6 +28,7 @@ def _build_slope_tensor(n_attention_heads: int):
     slopes = torch.tensor(get_slopes(n_attention_heads)).reshape(
         n_attention_heads, 1, 1
     )
+    print(f"_build_slope_tensor slopes shape: {slopes.shape}")
 
     return slopes
 

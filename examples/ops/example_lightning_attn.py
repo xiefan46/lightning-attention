@@ -12,6 +12,8 @@ k = torch.randn((b, h, n, d), dtype=dtype, device=device).requires_grad_()
 v = torch.randn((b, h, n, e), dtype=dtype, device=device).requires_grad_()
 s = _build_slope_tensor(h).to(q.device).to(torch.float32)
 
+print(f"q shape: {q.shape}, k shape: {k.shape}, v shape: {v.shape}, s shape: {s.shape}")
+
 o = lightning_attn_func(q, k, v, s)
 
 print(o.shape)
