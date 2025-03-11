@@ -12,6 +12,7 @@ def _build_slope_tensor(n_attention_heads: int):
             return [start * ratio**i for i in range(n)]
 
         if math.log2(n).is_integer():
+            print(f"n is power of 2")
             return get_slopes_power_of_2(
                 n
             )  # In the paper, we only train models that have 2^a heads for some a. This function has
@@ -19,6 +20,7 @@ def _build_slope_tensor(n_attention_heads: int):
             closest_power_of_2 = 2 ** math.floor(
                 math.log2(n)
             )  # when the number of heads is not a power of 2, we use this workaround.
+            print(f"n is not power of 2. closest_power_of_2: {closest_power_of_2}")
             return (
                 get_slopes_power_of_2(closest_power_of_2)
                 + get_slopes(2 * closest_power_of_2)[0::2][: n - closest_power_of_2]
