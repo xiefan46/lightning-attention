@@ -29,7 +29,7 @@ def _build_slope_tensor(n_attention_heads: int):
         n_attention_heads, 1, 1
     )
     print(f"_build_slope_tensor slopes shape: {slopes.shape}")
-    print(f"_build_slope_tensor slopes: {slopes}")
+    print(f"_build_slope_tensor slopes: {slopes}, {torch.sum(slopes)}")
     return slopes
 
 
